@@ -27,19 +27,20 @@ void userInput(int* array, const int  size);
 * \param array Массив
 * \param size Размер массива
 **/
-void Print(int* array, const int size);
+void print(int* array, const int size);
 
 /**
 * \brief Заменить второй элемент массива на максимальный среди отрицательных.
 * \param array Массив
 * \param size Размер массива
-* \param return Значение суммы
+* \param return Заменённый 2 элемент на маскимум отрицательных
 **/
 int replacement(int* array, const int size);
 
 /**
 * \brief Найти количество тех элементов, значения которых положительны и по модулю не превосходят заданное число А.
 * \param array Массив
+* \param A вводимое число user-ом
 * \param size Размер массива
 **/
 void amount_of_numbers(int* array, const int size);
@@ -47,6 +48,7 @@ void amount_of_numbers(int* array, const int size);
 /**
 * \brief Метод,Найти номер первой пары соседних элементов, сумма которых меньше заданного числа.
 * \param array Массив
+* \param f вводимое число user-ом
 * \param size Размер массива
 **/
 void multiplyАllmultiplesThrebyThirdElement(int* array, const int size);
@@ -68,6 +70,8 @@ enum class Filling
 int main() {
 	setlocale(LC_ALL, "ru");
 	srand(time(NULL));
+    //Сочетание srand(time(NULL)) устанавливает в качестве базы текущее время.
+    // Этот прием часто используется для того, чтобы при разных запусках генератора псевдослучайных чисел была всякий раз разная база и, соответственно, разный ряд получаемых значений.
 
 	const int LOW_BOUND = -10, UP_BOUND = 10;
 
@@ -99,7 +103,8 @@ int main() {
 	cout << "Заменить второй элемент массива на максимальный среди отрицательных = " << replacement(array, size) << "\n\n";
 
 	cout << "Найти количество тех элементов, значения которых положительны и по модулю не превосходят заданное число А:\n";
-	amount_of_numbers(array, size);
+	int Rezult = amount_of_numbers(array, size);
+    cout<<Rezult;
 
 	cout << "Найти номер первой пары соседних элементов, сумма которых меньше заданного числа:\n";
 	multiplyАllmultiplesThrebyThirdElement(array, size);
@@ -122,7 +127,7 @@ void userInput(int* array, const int  size) {
 	}
 }
 
-void Print(int* array, const int size) {
+void print(int* array, const int size) {
 	cout << "array[" << size << "]" << "= {";
 	for (size_t i = 0; i < size - 1; i++) {
 		cout << array[i] << ";" << setw(3);
@@ -131,33 +136,33 @@ void Print(int* array, const int size) {
 }
 
 int replacement(int* array, const int size) {
-	int z = array[0];
+	int z = -1;
 	for (size_t i = 0; i < size; i++) {
 		if ((array[i]<z)&&(array[i]<0)) {
 			z = array[i];
 		}
 	}
-	array[2]=z;
+	array[1]=z;
 }
 
-void amount_of_numbers(int* array, const int size) {
+int amount_of_numbers(int* array, const int size) {
 	double A;
-	int c=0;
+	int counter=0;
 	cin>>A;
 	for (size_t i = 0; i < size; i++) {
 		if ((array[i] > 0)&&(array[i]<A) ){
-			c++;
+			counter++;
 		}
 	}
 
-	cout << c <<"\n";
+	return counter;
 }
 
 void multiplyАllmultiplesThrebyThirdElement(int* array, const int size) {
-	int F;
-	cin>>F;
+	int f;
+	cin>>f;
 	for (size_t i = 0; i < size-1; i++) {
-		if (((array[i]*array[i+1])<0) and ((array[i]+array[i+1])<F)) {
+		if (((array[i]*array[i+1])<0) and ((array[i]+array[i+1])<f)) {
 			cout<<"Вот эти числа"<<i<<" "<<i+1;
 		}
 	}
