@@ -11,7 +11,7 @@ using namespace std;
 * \param z параметр ввода
 * \return а
 **/
-double a(float x, float y, float z);
+double geta(const double x, const double y, const double z);
 
 /**
 * \brief Поиск b
@@ -20,26 +20,28 @@ double a(float x, float y, float z);
 * \param z параметр ввода
 * \return b
 **/
-double b(float x, float y, float z);
+double getb(const double x, const double y, const double z);
 
 int main() {
-int a,b;
-double x,y,z;
 
-x= 1.4;
-y= 3.1;
-z= 0.5;
 
-cout << a(x, y, z) << endl;
-cout << b(x, y, z) << endl;
+const double x= 1.4;
+const double y= 3.1;
+const double z= 0.5;
+
+double a = geta(x, y, z);
+double b = getb(x, y, z);
+
+cout << a << b << endl;
+
 
 return 0;
 }
 
-double a(float x, float y, float z) {
-    return  sqrt(z * x sin(2 * x) + exp(-2x) * (x + y));
+double geta(const double x, const double y, const double z){
+    return  sqrt(z * x sin(2 * x) + exp(-2x) * (x + y) );
 }
 
-double b(float x, float y, float z) {
+double getb(const double x, const double y, const double z){
     return exp(2x) * log(z + x) - pow(y, 3x) * log(y - x);
 }
