@@ -10,29 +10,30 @@ using namespace std;
 * \param b параметр ввода
 * \param h параметр ввода
 * \return площадь трапеции
-**/
-double trapezoid_area(int a, int b, int h)
-
+*/
+double trapezoid_area(double a, double b, double h);
+ 
  
 /**
 * \brief площадь круга
 * \param r параметр ввода
 * \return площадь круга
-**/
+*/
 double area_circle(int r);
 
- double trapezoid_area(int a, int b, int h){
+ 
+ double trapezoid_area(double a, double b, double h){
 	 return ((h*(a+b))/2);
  }
 
 
- double area_circle(int r){
-	 return (4*M_PI*pow(r,2));
+ double area_circle(double r){
+	 return (4*3.14*pow(r,2));
  }
  
 int main() { 
-	int a,b,h,r,c;
-	float S;
+	double a,b,h,r,c;
+	double S;
 
 	cout<<"Какой фигуры вам надо посчитать площадь."<<endl<<"1 Трапеция."<<endl<<"2 Круг."<<endl;
 	cin>>c;
