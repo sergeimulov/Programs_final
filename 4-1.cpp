@@ -33,7 +33,7 @@ void print(int* array, const int size);
 * \brief Заменить второй элемент массива на максимальный среди отрицательных.
 * \param array Массив
 * \param size Размер массива
-* \param return Заменённый 2 элемент на маскимум отрицательных
+* \return Заменённый 2 элемент на маскимум отрицательных
 **/
 int replacement(int* array, const int size);
 
