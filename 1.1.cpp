@@ -39,9 +39,9 @@ return 0;
 }
 
 double geta(const double x, const double y, const double z){
-    return  sqrt(z * x (sin(2 * x)) + exp(-2x) * (x + y) );
+    return  sqrt(z * x * (sin(2 * x)) + exp(-2 * x) * (x + y) );
 }
 
 double getb(const double x, const double y, const double z){
-    return exp(2x) * log(z + x) - pow(y, 3x) * log(y - x);
+    return exp(2 * x) * log(z + x) - pow(y, 3 * x) * log(y - x);
 }
