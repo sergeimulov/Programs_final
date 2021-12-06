@@ -1,51 +1,161 @@
-#include <iostream>
-#include <cmath>
+#include <iostream> //в этой библиотеке функции ввода/вывода
 
- 
-using namespace std;
- 
-/**
-* \brief площадь трапеции
-* \param a параметр ввода
-* \param b параметр ввода
-* \param h параметр ввода
-* \return площадь трапеции
-*/
-double trapezoid_area(double a, double b, double h);
- 
- 
-/**
-* \brief площадь круга
-* \param r параметр ввода
-* \return площадь круга
-*/
-double area_circle(int r);
+#include <conio.h> //в этой библиотеке функция _getch()
 
- 
- double trapezoid_area(double a, double b, double h){
-	 return ((h*(a+b))/2);
- }
+#include <math.h> //математические функции fabs(), pow(), sqrt()
+
+using namespace std; //использование стандартного пространства имён
+
+int Input() //функция проверки корректности ввода
+
+{
+
+int value;
+
+while (true)
+
+{
+
+cin >> value;
+
+if (cin.fail()) //если предыдущее извлечение оказалось неудачным,
+
+{
+
+cin.clear(); //то возвращаем cin в 'обычный' режим работы
+
+cin.ignore(32767, '\n'); //и удаляем значения предыдущего ввода из входного буфера
+
+cout << "Некорректное значение! Попробуйте ввести заново: ";
+
+}
+
+else
+
+{
+
+cin.ignore(32767, '\n');
+
+return value;
+
+}
+
+}
+
+}
+
+int Input2() //функция проверки ввода 0 или 1
+
+{
+
+int value;
+
+while (true)
+
+{
+
+cin >> value;
+
+if (cin.fail())
+
+{
+
+cin.clear();
+
+cin.ignore(32767, '\n');
+
+cout << "Некорректное значение! Попробуйте ввести заново: ";
+
+}
+
+if (value == 0 || value == 1)
+
+{
+
+cin.ignore(32767, '\n');
+
+return value;
+
+}
+
+else
+
+{
+
+cin.ignore(32767, '\n');
+
+cout << "Некорректное значение! Попробуйте ввести заново: ";
+
+}
+
+}
+
+}
+
+int main()
+
+{
 
 
- double area_circle(double r){
-	 return (4*3.14*pow(r,2));
- }
- 
-int main() { 
-	double a,b,h,r,c;
-	double S;
+int** a = new int* [3]; //выделяем динамическую память под двумерный массив (координаты вершин треугольника)
 
-	cout<<"Какой фигуры вам надо посчитать площадь."<<endl<<"1 Трапеция."<<endl<<"2 Круг."<<endl;
-	cin>>c;
-	if (c==1){
-		cout<<"Введите длина 1-ого основания,длина 2-ого основания,длина высоты трапеции(в строчку с пробелами)";
-		cin>>a,b,h;
-		S=trapezoid_area(a,b,h);
-		cout<<S;
-	}else if(c==2){
-		cout<<"Введите радиус";
-		cin>>r;
-		S=area_circle(r);
-		cout<<S;
-	}
+for (int i = 0; i < 3; i++)
+
+{
+
+a[i] = new int[2];
+
+}
+
+cout << "\nВведите координаты вершин треугольника (целые числа): " << endl;
+
+for (int i = 0; i < 3; i++) //в этом цикле вводим координаты вершин треугольника
+
+{
+
+cout << "x[" << i << "] = ";
+
+a[i][0] = Input();
+
+cout << "y[" << i << "] = ";
+
+a[i][1] = Input();
+
+}
+
+enum function {perimeter, square};
+
+int ch;
+
+cout << endl << "Введите 0 для нахождения периметра или 1 для нахождения площади треугольника: ";
+
+ch = Input2();
+
+if (ch == perimeter) //здесь находим периметр треугольника
+
+{
+
+double P = 0;
+
+P = sqrt(pow(a[0][0] - a[1][0], 2) + pow(a[0][1] - a[1][1], 2)) + sqrt(pow(a[1][0] - a[2][0], 2) + pow(a[1][1] - a[2][1], 2)) + sqrt(pow(a[2][0] - a[0][0], 2) + pow(a[2][1] - a[0][1], 2));
+
+cout << endl << "Периметр треугольника равен: " << P;
+
+}
+
+if (ch == square) //здесь находим площадь треугольника
+
+{
+
+double S = 0;
+
+S = (fabs((a[0][0] - a[2][0])*(a[1][1] - a[2][1]) - (a[1][0] - a[2][0])*(a[0][1] - a[2][1]))) / 2;
+
+cout << endl << "Периметр треугольника равен: " << S;
+
+}
+
+getch(); //функция "заморозки" экрана. Без неё окно консоли после выполнения программы сразу закроется
+
+return 0;
 }
