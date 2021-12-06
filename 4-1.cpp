@@ -1,10 +1,10 @@
-#include <iostream> //в этой библиотеке функции ввода/вывода
+#include <iostream> 
 
 #include <conio.h> //в этой библиотеке функция _getch()
 
 #include <windows.h> //функции SetConsoleCP(1251), SetConsoleOutputCP(1251) для ввода и вывода русских символов
 
-#include <math.h> //математическая функция fabs() для нахождения модуля числа
+#include <math.h>
 
 using namespace std; //использование стандартного пространства имён
 
