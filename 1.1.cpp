@@ -32,7 +32,8 @@ const double z= 0.5;
 double a = geta(x, y, z);
 double b = getb(x, y, z);
 
-cout << a << b << endl;
+cout << "x = 1.4; " << "y = 3.1; " << "z = 0.5" << endl;
+cout << "Result is " << a << b << endl;
 
 
 return 0;
