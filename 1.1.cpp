@@ -39,7 +39,7 @@ return 0;
 }
 
 double geta(const double x, const double y, const double z){
-    return  sqrt(z * x sin(2 * x) + exp(-2x) * (x + y) );
+    return  sqrt(z * x (sin(2 * x)) + exp(-2x) * (x + y) );
 }
 
 double getb(const double x, const double y, const double z){
