@@ -11,19 +11,14 @@ using namespace std;
 
 double GetY(double x);
 
-/**
-*\brief Ввод значения х в программу
-*\return Конечное значение
-*/
 
 int main()
 {
     setlocale(LC_ALL, "Russian");
 
     double x;
-    cout << "x min = 1; x max = 3" << endl;
-    cout << "Введите значение x =" << endl;
-    cin >> x;
+    cout << "Введите значение x[1;3] =" << endl;
+    cin >> x;  
     int LOW_BOUND = 1;
     int UP_BOUND = 3;
     double step = 0.2;
