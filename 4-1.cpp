@@ -1,169 +1,213 @@
-#define _USE_MATH_DEFINES // for C++
+#include <iostream> //в этой библиотеке функции ввода/вывода
 
-#include <iostream>
-#include <iomanip>
-#include <ctime>
-using namespace std;
+#include <conio.h> //в этой библиотеке функция _getch()
 
+#include <windows.h> //функции SetConsoleCP(1251), SetConsoleOutputCP(1251) для ввода и вывода русских символов
 
-/**
-* \brief Заполнение массива случайными числами
-* \param array Массив
-* \param size Размер массива
-* \param LOW_BOUND Минимально возможное число
-* \param UP_BOUND Максимально возможное число
-**/
-void randomDigits(int* array, const size_t  size, const int LOW_BOUND, const int UP_BOUND);
+#include <math.h> //математическая функция fabs() для нахождения модуля числа
 
-/**
-* \brief Ввод массива с клавиатуры
-* \param array Массив
-* \param size Размер массива
-**/
-void userInput(int* array, const int  size);
+using namespace std; //использование стандартного пространства имён
 
-/**
-* \brief Вывод массива
-* \param array Массив
-* \param size Размер массива
-**/
-void print(int* array, const int size);
+void Change(int* array, int size) //функция замены второго элемента на максимальный среди отрицательных. Первый аргумент - массив, второй аргумент - размер массива.
 
-/**
-* \brief Заменить второй элемент массива на максимальный среди отрицательных.
-* \param array Массив
-* \param size Размер массива
-* \return Заменённый 2 элемент на маскимум отрицательных
-**/
-int replacement(int* array, const int size);
-
-/**
-* \brief Найти количество тех элементов, значения которых положительны и по модулю не превосходят заданное число А.
-* \param array Массив
-* \param A вводимое число user-ом
-* \param size Размер массива
-**/
-void amount_of_numbers(int* array, const int size);
-
-/**
-* \brief Метод,Найти номер первой пары соседних элементов, сумма которых меньше заданного числа.
-* \param array Массив
-* \param f вводимое число user-ом
-* \param size Размер массива
-**/
-void multiplyАllmultiplesThrebyThirdElement(int* array, const int size);
-
-/**
-* \brief Выбор заполнеия массива
-**/
-enum class Filling
 {
-	RANDOM = 1,
-	USER = 2
-};
 
+int temp = array[0];
 
-/**
-* \brief Точка входа в программу
-* \return Код ошибки (0-успех)
-**/
-int main() {
-	setlocale(LC_ALL, "ru");
-	srand(time(NULL));
-    //Сочетание srand(time(NULL)) устанавливает в качестве базы текущее время.
-    // Этот прием часто используется для того, чтобы при разных запусках генератора псевдослучайных чисел была всякий раз разная база и, соответственно, разный ряд получаемых значений.
+for (int i = 1; i < size; i++)
 
-	const int LOW_BOUND = -10, UP_BOUND = 10;
+{
 
-	cout << "Введите количество элементов массива: ";
-	int* array;
-	int size;
-	cin >> size;
+if (temp > array[i])
 
-	array = new int[size];
-	cout << "1 - Сгенерировать массив\n2 - Заполнить массив вручную\n";
-	int choice;
-	cin >> choice;
+{
 
-	const auto filling = static_cast<Filling>(choice);
-	switch (filling)
-	{
-	case Filling::RANDOM:
-		randomDigits(array, size, LOW_BOUND, UP_BOUND);
-		Print(array, size);
-		break;
-	case Filling::USER:
-		userInput(array, size);
-		Print(array, size);
-		break;
-	default:
-		cout << "Ошибка! Не выбран ни один из вариантов";
-	}
+temp = array[i];
 
-	cout << "Заменить второй элемент массива на максимальный среди отрицательных = " << replacement(array, size) << "\n\n";
-
-	cout << "Найти количество тех элементов, значения которых положительны и по модулю не превосходят заданное число А:\n";
-	int Rezult = amount_of_numbers(array, size);
-    cout<<Rezult;
-
-	cout << "Найти номер первой пары соседних элементов, сумма которых меньше заданного числа:\n";
-	multiplyАllmultiplesThrebyThirdElement(array, size);
-
-	delete[] array;
-
-	return 0;
 }
 
-void randomDigits(int* array, const size_t  size, const int LOW_BOUND, const int UP_BOUND) {
-	for (size_t i = 0; i < size; i++) {
-		array[i] = rand() % (2 * UP_BOUND + 1) + LOW_BOUND;
-	}
 }
 
-void userInput(int* array, const int  size) {
-	for (size_t i = 0; i < size; i++) {
-		cout << "arr[" << i << "] = ";
-		cin >> array[i];
-	}
+if (temp < 0)
+
+{
+
+array[1] = temp;
+
+cout << "\nПроизведена замена второго элемента на максимальный (то есть наибольший по абсолютной величине) среди отрицательных чисел." << endl;
+
 }
 
-void print(int* array, const int size) {
-	cout << "array[" << size << "]" << "= {";
-	for (size_t i = 0; i < size - 1; i++) {
-		cout << array[i] << ";" << setw(3);
-	}
-	cout << array[size - 1] << "}\n\n";
+else
+
+{
+
+cout << "\nЗамена второго элемента не произведена ввиду того, что нет отрицательных чисел." << endl;
+
 }
 
-int replacement(int* array, const int size) {
-	int z = -1;
-	for (size_t i = 0; i < size; i++) {
-		if ((array[i]<z)&&(array[i]<0)) {
-			z = array[i];
-		}
-	}
-	array[1]=z;
 }
 
-int amount_of_numbers(int* array, const int size) {
-	double A;
-	int counter=0;
-	cin>>A;
-	for (size_t i = 0; i < size; i++) {
-		if ((array[i] > 0)&&(array[i]<A) ){
-			counter++;
-		}
-	}
+void Amount(int* array, int size, int num) //функция нахождения кол - ва элементов, значения которых положительны и по модулю не превосходят заданное число. Первый аргумент - массив, второй - размер массива, третий - заданное число.
 
-	return counter;
+{
+
+int k = 0;
+
+for (int i = 0; i < size; i++)
+
+{
+
+if (array[i] > 0 && array[i] <= fabs(num))
+
+{
+
+k = k + 1;
+
 }
 
-void multiplyАllmultiplesThrebyThirdElement(int* array, const int size) {
-	int f;
-	cin>>f;
-	for (size_t i = 0; i < size-1; i++) {
-		if (((array[i]*array[i+1])<0) and ((array[i]+array[i+1])<f)) {
-			cout<<"Вот эти числа"<<i<<" "<<i+1;
-		}
-	}
 }
+
+cout << "\nКоличество элементов, значения которых положительны и по модулю не превосходят заданное число " << num << ": " << k << endl;
+
+}
+
+void NumberFPair(int* array, int size, int num) //функция нахождения номера первой пары соседних элементов, сумма которых меньше заданного числа. Первый аргумент - массив, второй - размер массива, третий - заданное число.
+
+{
+
+int k = 0;
+
+for (int i = 0; i < size - 1 && k == 0; i++)
+
+{
+
+if (array[i] + array[i + 1] < num)
+
+{
+
+k = i + 1;
+
+}
+
+}
+
+if (k == 0)
+
+{
+
+cout << "\nНет такой пары соседних элементов, сумма которых меньше заданного числа." << endl;
+
+}
+
+else
+
+{
+
+cout << "\nНомер первой пары соседних элементов, сумма которых меньше заданного числа " << num << ": " << k << endl;
+
+}
+
+}
+
+int main()
+
+{
+
+SetConsoleCP(1251); //устанавливает кодировку ввода
+
+SetConsoleOutputCP(1251); //устанавливает кодировку вывода
+
+int n; //инициализация переменной
+
+cout << "Введите число n (n > 1): "; //вывод текста в консоль
+
+cin >> n; //ввод числа n
+
+int* a = new int[n]; //инициализация массива из n элементов типа int
+
+int ch;
+
+cout << "\nВведите число 1 для заполнения массива случайными числами или число 2 для заполнения массива вручную: ";
+
+cin >> ch;
+
+if (ch == 1) //условие, если число ch равно 1, то...
+
+{
+
+for (int i = 0; i < n; i++) //цикл, в котором происходит заполнение массива случайными числами
+
+{
+
+a[i] = rand() % 201 - 100; //присваивание каждому элементу значения в диапазоне от -100 до 100
+
+}
+
+for (int i = 0; i < n; i++) //цикл вывода элементов массива
+
+{
+
+cout << "a[" << i << "] = " << a[i] << endl;
+
+}
+
+cout << "\nМассив заполнен случайными целыми числами в диапазоне от -100 до 100." << endl;
+
+}
+
+if (ch == 2)
+
+{
+
+for (int i = 0; i < n; i++) //цикл, в котором пользователь вручную заполняет массив
+
+{
+
+cout << "a[" << i << "] = ";
+
+cin >> a[i];
+
+}
+
+}
+
+else
+
+{
+
+return 0;
+
+}
+
+Change(a, n); //выполнение функции замены второго элемента на максимальный среди отрицательных
+
+cout << "\nМассив после функции замены второго элемента:" << endl;
+
+for (int i = 0; i < n; i++)
+
+{
+
+cout << "a[" << i << "] = " << a[i] << endl;
+
+}
+
+int a1;
+
+cout << "\nВведите число A (-10 <= A <= 10): ";
+
+cin >> a1;
+
+Amount(a, n, a1); //выполнение функции нахождения кол-ва элементов, значения которых положительны и по модулю не превосходят заданное число A
+
+int b;
+
+cout << "\nВведите число B: ";
+
+cin >> b;
+
+NumberFPair(a, n, b); //выполнение функции нахождения номера первой пары соседних элементов, сумма которых меньше заданного числа.
+
+_getch(); //функция "заморозки" экрана. Без неё окно консоли после выполнения программы сразу закроется
+
+return 0;
