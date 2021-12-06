@@ -21,7 +21,8 @@ int main()
     setlocale(LC_ALL, "Russian");
 
     double x;
-    cout << "Введите значение x = ";
+    cout << "x min = 1; x max = 3" << endl;
+    cout << "Введите значение x =" << endl;
     cin >> x;
     int LOW_BOUND = 1;
     int UP_BOUND = 3;
