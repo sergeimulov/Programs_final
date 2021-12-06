@@ -33,7 +33,8 @@ double a = geta(x, y, z);
 double b = getb(x, y, z);
 
 cout << "x = 1.4; " << "y = 3.1; " << "z = 0.5" << endl;
-cout << "Result is " << a << b << endl;
+cout << "Result a is " << a << endl;
+cout << "Result b is " << b << endl;
 
 
 return 0;
