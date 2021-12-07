@@ -4,6 +4,23 @@
 
 using namespace std; //использование стандартного пространства имён
 
+/**
+* \brief Поиск p
+* \param x
+* \param y
+* \param z
+* \return P
+**/
+
+/**
+* \brief Поиск S
+* \param x параметр ввода
+* \param y параметр ввода 
+* \param z параметр ввода
+* \return S
+**/
+
+
 int Input() //функция проверки корректности ввода
 
 {
