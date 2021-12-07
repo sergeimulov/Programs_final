@@ -1,6 +1,6 @@
 #include <iostream> 
 
-#include <conio.h> //в этой библиотеке функция _getch()
+#include <conio.h> //в этой библиотеке функция getch()
 
 #include <math.h>
 
